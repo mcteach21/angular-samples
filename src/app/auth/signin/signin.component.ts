@@ -16,8 +16,8 @@ export class SigninComponent implements OnInit {
   signinForm!: FormGroup;
   errorMessage: string = '';
 
-  constructor( private service: AuthService, private formBuilder : FormBuilder,
-    private logger : LogService) {
+  constructor( private authService: AuthService, private formBuilder : FormBuilder,
+    private logger : LogService, private router: Router) {
 
   }
 
@@ -47,10 +47,16 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const email_value = this.email.value;
-    const password_value = this.password.value;
 
-    this.logger.log('submit signin form : '+email_value+' '+password_value);
+      this.authService.check(this.email.value, this.password.value).then(
+        () => {
+            this.logger.log('response from service (check) : ok!');
+            this.router.navigate(['/about']);
+        },
+        (error) => {
+            this.errorMessage = error;
+        }
+      );
   }
 
 }
