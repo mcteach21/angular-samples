@@ -1,0 +1,46 @@
+<div class="row" style="width:40%; margin:auto; text-align: center;">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Se Connecter</h2>
+    <!-- [formGroup]="signinForm" -->
+    <form  (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="fill">
+	    <mat-label>Enter your email</mat-label>
+	    <input matInput placeholder="your email.." [formControl]="email" required>
+	    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+	  </mat-form-field> 
+
+	  <mat-form-field appearance="fill">
+	    <mat-label>Enter your password</mat-label>
+	    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
+	    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+	      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+	    </button>
+	  </mat-form-field> 
+	  <button mat-raised-button color="primary"  type="submit" [disabled]="formIsNotValid()">
+	  	Se Connecter
+	  </button>	
+
+	  <!-- <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password"
+               id="password"
+               class="form-control"
+               formControlName="password">
+      </div> -->
+
+<!--       <div class="form-group">
+        <label for="email">Adresse mail</label>
+        <input type="text"
+               id="email"
+               class="form-control"
+               formControlName="email">
+      </div>
+       -->
+      <!-- <button class="btn btn-primary"
+              type="submit"
+              [disabled]="signinForm.invalid">Se Connecter</button> -->
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>
