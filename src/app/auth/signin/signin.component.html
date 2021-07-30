@@ -1,27 +1,30 @@
-<div class="row" style="width:40%; margin:auto; text-align: center;">
-  <div class="col-sm-8 col-sm-offset-2">
+<mat-card style="width:40%; margin:auto; text-align: center;">
+  <mat-card-content>
     <h2>Se Connecter</h2>
-    <!-- [formGroup]="signinForm" -->
-    <form  (ngSubmit)="onSubmit()">
 
-      <mat-form-field appearance="fill">
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
 	    <mat-label>Enter your email</mat-label>
-	    <input matInput placeholder="your email.." [formControl]="email" required>
-	    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+	    <input matInput formControlName="email" required>
+	    <mat-error> Please provide a valid email. </mat-error>
 	  </mat-form-field> 
 
 	  <mat-form-field appearance="fill">
 	    <mat-label>Enter your password</mat-label>
-	    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
+	    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+
 	    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
 	      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 	    </button>
+
+	    <mat-error> Please provide a valid password. </mat-error>
 	  </mat-form-field> 
-	  <button mat-raised-button color="primary"  type="submit" [disabled]="formIsNotValid()">
+	  <button mat-raised-button color="primary"  type="submit" [disabled]="formIsValid()==false">
 	  	Se Connecter
 	  </button>	
     </form>
     <br/>
     <mat-card class="bg-danger" *ngIf="errorMessage!=''">{{ errorMessage }}</mat-card>
-  </div>
-</div>
+	</mat-card-content>
+</mat-card>

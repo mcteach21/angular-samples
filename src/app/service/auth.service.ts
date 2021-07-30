@@ -26,7 +26,7 @@ export class AuthService {
 
       // pour tests.. 
       setTimeout(() => {
-        var check = (email=='mc@mc.com' && password=='123'); 
+        var check = (email=='mc@mc.com' && password=='admin123'); 
         
         this.logger.log("AuthService : async checking auth..Complete! "+check);
         var error = 'access denied!';

@@ -23,40 +23,39 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
      // init form
-     // this.signinForm = this.formBuilder.group(
-     // // {
-     // //    email: ['', [Validators.required, Validators.email]],
-     // //    password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
-     // // }
-     // );
+     this.signinForm = this.formBuilder.group(
+       {
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
+       }
+     );
   }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
+  // email = new FormControl('', [Validators.required, Validators.email]);
+  // password = new FormControl('', [Validators.required]);
   hide = true;
 
-  formIsNotValid() {
-     return this.email.hasError('required') || this.email.hasError('email') || this.password.hasError('required');
-  }
-
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  formIsValid() {
+     return this.signinForm.valid;  //.email.hasError('required') || this.signinForm.email.hasError('email') 
+          //|| this.signinForm.password.hasError('required');
   }
 
   onSubmit(): void {
 
-      this.authService.check(this.email.value, this.password.value).then(
-        () => {
-            this.logger.log('response from service (check) : ok!');
-            this.router.navigate(['/about']);
-        },
-        (error) => {
-            this.errorMessage = error;
-        }
-      );
+      if (this.signinForm.valid) {
+        const email = this.signinForm.get('email')?.value;
+        const password = this.signinForm.get('password')?.value;
+
+        this.authService.check(email, password).then(
+          () => {
+              this.logger.log('response from service (check) : ok!');
+              this.router.navigate(['/about']);
+          },
+          (error) => {
+              this.errorMessage = error;
+          }
+        );
+      }
   }
 
 }
