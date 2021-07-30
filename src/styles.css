@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+
+html, body { height: 100%; }
+body { 
+	margin: 0; 
+	/*font-family: Roboto, "Helvetica Neue", sans-serif; */
+}
+
+.mat-body, .mat-body-1, .mat-typography {
+    /*font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;*/
+    font: 400 18px/20px 'Patrick Hand', cursive !important;
+    letter-spacing: normal;
+}
+footer a{
+	text-decoration: none;
+	color: #4190F1;
+}
+
+.mat-button-wrapper {
+	 font: 400 20px/20px 'Patrick Hand', cursive !important;
+}
+.main-content{
+	border: 2px #ffffff dashed;
+	padding: 20px;
+	width: 80%;
+	min-height: 60% ;
+    margin: 50px auto;
+}

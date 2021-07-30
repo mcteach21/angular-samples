@@ -1,0 +1,19 @@
+.expanded-toolbar {
+  justify-content: space-between;
+  align-items: center;
+}
+.mat-toolbar.mat-primary {
+    background: rgba(138,180,248,.24);
+    color: #fff;
+}
+
+footer {
+  background: rgba(242,139,130,.24);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+router-outlet{
+  background: rgba(129,201,149,.24);
+}
+    
