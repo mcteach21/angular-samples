@@ -14,18 +14,29 @@ export class AuthService {
     this.logger.log('AuthService : checking auth..'+email+' '+password);
 
     return new Promise<boolean>((resolve: any, reject: any) => {
-      setTimeout(() => {
-        var check = (email=='mc@mc.com' && password=='123'); // pour tests..
-        // avec firebase (auth) : firebase.auth().signInWithEmailAndPassword(email, password)
+       // avec firebase (auth) : 
+       // firebase.auth().createUserWithEmailAndPassword(email, password).then(
+       //      () => {
+       //        resolve();
+       //      },
+       //      (error) => {
+       //        reject(error);
+       //      }
+       //    );
 
-        this.logger.log("AuthService : async checking auth..Complete! "+check);
+      // pour tests.. 
+      setTimeout(() => {
+        var check = (email=='mc@mc.com' && password=='123'); 
         
+        this.logger.log("AuthService : async checking auth..Complete! "+check);
+        var error = 'access denied!';
         if (!check) {
-          reject('access denied!');
+          reject(error);
         } else {
           resolve();
         }
       }, 1000);
+
     });
   }
 }

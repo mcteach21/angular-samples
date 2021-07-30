@@ -5,3 +5,8 @@
 .mat-raised-button{
     width: 100%;
 }
+
+.bg-danger{
+    background-color: #f93154!important;
+    color: white;
+}
