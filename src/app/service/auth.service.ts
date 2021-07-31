@@ -29,7 +29,7 @@ export class AuthService {
         var check = (email=='mc@mc.com' && password=='admin123'); 
         
         this.logger.log("AuthService : async checking auth..Complete! "+check);
-        var error = 'access denied!';
+        var error = 'acces refusé! (essayez mc@mc.com + admin123)';
         if (!check) {
           reject(error);
         } else {

@@ -7,7 +7,7 @@
     <mat-form-field appearance="fill">
 	    <mat-label>Enter your email</mat-label>
 	    <input matInput formControlName="email" required>
-	    <mat-error> Please provide a valid email. </mat-error>
+	    <mat-error> Email non valide! </mat-error>
 	  </mat-form-field> 
 
 	  <mat-form-field appearance="fill">
@@ -18,7 +18,7 @@
 	      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 	    </button>
 
-	    <mat-error> Please provide a valid password. </mat-error>
+	    <mat-error> Mot de passe non valide!</mat-error>
 	  </mat-form-field> 
 	  <button mat-raised-button color="primary"  type="submit" [disabled]="formIsValid()==false">
 	  	Se Connecter
