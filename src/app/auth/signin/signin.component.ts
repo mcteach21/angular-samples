@@ -12,6 +12,16 @@ import { LogService } from '../../service/log.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+
+  // array in local storage for registered users
+  //let users = JSON.parse(localStorage.getItem('users')) || [];
+  // let user = {
+  //               id: 1,
+  //               username: 'homer',
+  //               firstName: 'Homer',
+  //               lastName: 'Simpson',
+  //               token: 'fake-jwt-token'
+  //             };
   
   signinForm!: FormGroup;
   errorMessage: string = '';
@@ -49,6 +59,9 @@ export class SigninComponent implements OnInit {
         this.authService.check(email, password).then(
           () => {
               this.logger.log('response from service (check) : ok!');
+
+              
+              localStorage.setItem('currentUser','mc'); // JSON.stringify(this.user));
               this.router.navigate(['/about']);
           },
           (error) => {
