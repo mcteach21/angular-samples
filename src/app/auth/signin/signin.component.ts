@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { LogService } from '../../service/log.service';
 
+import { User } from '../../modele/user';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -14,14 +16,8 @@ import { LogService } from '../../service/log.service';
 export class SigninComponent implements OnInit {
 
   // array in local storage for registered users
-  //let users = JSON.parse(localStorage.getItem('users')) || [];
-  // let user = {
-  //               id: 1,
-  //               username: 'homer',
-  //               firstName: 'Homer',
-  //               lastName: 'Simpson',
-  //               token: 'fake-jwt-token'
-  //             };
+  users : User[] = JSON.parse(localStorage.getItem('users') || '{}') || [];
+  //currentUser : User = {};
   
   signinForm!: FormGroup;
   errorMessage: string = '';
@@ -39,6 +35,9 @@ export class SigninComponent implements OnInit {
           password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
        }
      );
+
+    //this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}') 
+
   }
 
   // email = new FormControl('', [Validators.required, Validators.email]);
@@ -56,12 +55,23 @@ export class SigninComponent implements OnInit {
         const email = this.signinForm.get('email')?.value;
         const password = this.signinForm.get('password')?.value;
 
+
         this.authService.check(email, password).then(
           () => {
               this.logger.log('response from service (check) : ok!');
 
+              let currentUser = {
+                  id: 1000,
+                  firstName: 'Homer',
+                  lastName: 'Simpson',
+                  login: 'homer',
+                  password: '123+aze', 
+                  token: 'fake-jwt-token'
+              } 
+
+              localStorage.setItem('authenticated', JSON.stringify(true));
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
               
-              localStorage.setItem('currentUser','mc'); // JSON.stringify(this.user));
               this.router.navigate(['/about']);
           },
           (error) => {
