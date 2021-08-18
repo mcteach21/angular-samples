@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-root',
@@ -11,10 +9,7 @@ export class AppComponent {
   title = 'Angular Samples';
   isAuthenticated = false;
 
-  constructor(private router: Router) {
-
-  }
-
+  
   authenticated() {
     console.log(localStorage.getItem('authenticated'));
     if(localStorage.getItem('authenticated') === 'true') {
@@ -26,10 +21,10 @@ export class AppComponent {
     }
   }
 
-  logout(){
-      localStorage.setItem('authenticated', 'false');
-      localStorage.setItem('currentUser', 'null');
+  // logout(){
+  //     localStorage.setItem('authenticated', 'false');
+  //     localStorage.setItem('currentUser', 'null');
 
-      this.router.navigate(['/about']);
-  }
+  //     this.router.navigate(['/about']);
+  // }
 }
