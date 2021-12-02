@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+// translate module
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,23 +11,32 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Angular Samples';
   isAuthenticated = false;
-
   
+  param = {value : 'mc'};
+  selectLang : string = 'en';
+  TransLang = [];
+
+  constructor(public translate: TranslateService){
+      translate.setDefaultLang(this.selectLang);
+      translate.addLangs(['en', 'fr', 'kb']);
+      
+      // translate.use('fr');
+  }
+  ngOnInit(){
+      this.TransLang = [...this.translate.getLangs()];
+  }
+
   authenticated() {
-    console.log(localStorage.getItem('authenticated'));
     if(localStorage.getItem('authenticated') === 'true') {
-        console.log("YES");
         return true;
     } else {
-        console.log("NO");
         return null;    
     }
   }
 
-  // logout(){
-  //     localStorage.setItem('authenticated', 'false');
-  //     localStorage.setItem('currentUser', 'null');
+  setTransLanguage(){
+      console.log(this.translate.getLangs()+' ==> '+this.selectLang);
+      this.translate.use(this.selectLang);
+  }
 
-  //     this.router.navigate(['/about']);
-  // }
 }

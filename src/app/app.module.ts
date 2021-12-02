@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 /**
  * Http Client
  */
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +49,23 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { RxComponent } from './rx/rx.component';
 
 
+/**
+ * ngx-translate
+ * npm install @ngx-translate/core --save
+ * npm install @ngx-translate/http-loader --save
+ */ 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
+/** Create 'Translate Loader' : 
+* (TranslateHttpLoader that will load translations from files using HttpClient)
+* AoT (Ahead-of-time Compilation) requires an exported function for factories
+*/ 
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +95,15 @@ import { RxComponent } from './rx/rx.component';
     MatSlideToggleModule,
     MatSelectModule,
     MatOptionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   providers: [
       AuthService, 

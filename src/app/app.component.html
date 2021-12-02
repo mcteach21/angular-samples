@@ -4,7 +4,8 @@
 			<mat-toolbar color="primary" class="expanded-toolbar">
 			  <span>
 			    <button mat-button routerLink="/">
-			    	<mat-icon>home</mat-icon> {{ title }}
+			    	<mat-icon>home</mat-icon> {{ title }} 
+			    		<span>[{{ 'Title' | translate }}] </span>
 			    </button>
 			  </span>
 			  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
@@ -42,6 +43,8 @@
 					      Logout
 					    </button>
 
+
+
 					    
 						</mat-menu>
 
@@ -57,13 +60,46 @@
 				      <mat-icon>settings</mat-icon>
 				      About
 				    </button>
+
+<!-- 				    <select matNativeControl [(ngModel)]="selectLang" name="selectLang" (change)="setTransLanguage()" class="mat-input-element">
+					      <option value="" selected></option>
+					      	<option *ngFor="let lang of TransLang" value="{{lang}}">{{ lang }}</option>
+					  </select> -->
+<!-- 				    <mat-form-field appearance="fill">
+					    <mat-label>Favorite car</mat-label>
+					    <select matNativeControl [(ngModel)]="selectLang" name="selectLang" (change)="setTransLanguage()">
+					      <option value="" selected></option>
+					      	<option *ngFor="let lang of TransLang" value="{{lang}}">{{ lang }}</option>
+					    </select>
+					  </mat-form-field> -->
+
 			  </div>
+			  <div style="max-width:50px">
+			  			<mat-form-field appearance="fill">
+							  <mat-select [(ngModel)]="selectLang" name="selectLang"
+							  (selectionChange)="setTransLanguage()" >
+							    <mat-option *ngFor="let lang of TransLang" value="{{lang}}"> 
+							    	<mat-icon>lang</mat-icon> {{ lang }}</mat-option>
+							  </mat-select>
+						</mat-form-field>
+			  </div>
+
 			  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
 			    	<mat-icon>menu</mat-icon>
 			  </button>
 			</mat-toolbar>
 
 	<div class="main-content">
+		<div class="alert alert-warning">
+			 {{ 'Hello' | translate:param }}
+		</div>
+
+<!-- 		<mat-form-field>
+      <mat-placeholder class="placeholder">Search</mat-placeholder>
+      <input type="text" class="toolbar-search" matInput formControlName="search">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field> -->
+
 		<router-outlet></router-outlet>
 	</div>
     

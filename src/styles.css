@@ -30,3 +30,7 @@ footer a{
 .title{
 	font: 400 22px/30px 'Patrick Hand', cursive !important;
 }
+
+.mat-form-field-infix {
+    width: 100px !important;
+}

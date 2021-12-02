@@ -71,20 +71,10 @@ export class RxComponent implements OnInit, OnDestroy {
   }
 
   onApiRequest() : void {
-      // Create an Observable out of a promise
-      // var api_observable = from(fetch('http://api.exchangeratesapi.io/v1/latest?access_key=3942fdcf1e4e98add7605f388356e263'));
-      // api_observable.subscribe({
-      //       next(response) { 
-      //         console.log(response['status']); 
-      //       },
-      //       error(err) { console.error('Error: ' + err); },
-      //       complete() { console.log('Completed'); }
-      //     });
-
       this.subscription = this.apiService.forex().subscribe(rate=>{
           console.log(rate['rates']);
 
-          this.base = rate['base'];
+          this.base = rate['base']+' | '+rate['date'];
           this.rates = rate['rates'];
       });
   }
