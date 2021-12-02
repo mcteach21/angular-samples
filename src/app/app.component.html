@@ -1,58 +1,77 @@
  <!-- https://fonts.google.com/icons -->
  <mat-sidenav-container fullscreen>
   <mat-sidenav-content fxLayout="column">
-    <mat-toolbar color="primary" class="expanded-toolbar">
-	  <span>
-	    <button mat-button routerLink="/">{{title}}</button>
-	    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
-	  </span>
-	  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-	    <button mat-button *ngIf="!authenticated()" routerLink="/signin">
-	      <mat-icon>login</mat-icon>
-	      Login
-	    </button>
-	    <button mat-button *ngIf="authenticated()" routerLink="/signup">
-	      <mat-icon>logout</mat-icon>
-	      Logout
-	    </button>
-	    <button mat-button routerLink="/about">
-	      <mat-icon>settings</mat-icon>
-	      About
-	    </button>
-	  </div>
-	  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
-	    <mat-icon>menu</mat-icon>
-	  </button>
-	</mat-toolbar>
-	<mat-menu x-position="before" #menu="matMenu">
-	  <button mat-menu-item routerLink="/">
-	    <mat-icon>home</mat-icon>
-	    Home
-	  </button>
-	  <button mat-menu-item routerLink="/about">
-	    <mat-icon>settings</mat-icon>
-	    About
-	  </button>
-	  <button mat-menu-item *ngIf="!isAuthenticated" routerLink="/signin">
-	    <mat-icon>login</mat-icon>
-	    Login
-	  </button>
-	  <button mat-menu-item *ngIf="isAuthenticated" routerLink="/signup">
-	    <mat-icon>logout</mat-icon>
-	    Logout
-	  </button>
-	</mat-menu>
+			<mat-toolbar color="primary" class="expanded-toolbar">
+			  <span>
+			    <button mat-button routerLink="/">
+			    	<mat-icon>home</mat-icon> {{ title }}
+			    </button>
+			  </span>
+			  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+
+			    	<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button menu">
+						  <mat-icon>more_vert</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu">
+							
+							<button mat-menu-item routerLink="/rx">
+						    <mat-icon>assessment</mat-icon>
+						    <span>Reactive Prog.</span>
+						  </button>
+						  <button mat-menu-item disabled>
+						    <mat-icon>voicemail</mat-icon>
+						    <span>other 1..</span>
+						  </button>
+						  <button mat-menu-item routerLink="/">
+						    <mat-icon>notifications_off</mat-icon>
+						    <span>other 2..</span>
+						  </button>
+							
+							<span class="example-spacer" style="flex: 1 1 auto;"></span>
+
+						  <button mat-menu-item routerLink="/about" fxHide="false" fxHide.gt-sm>
+					      <mat-icon>settings</mat-icon>
+					      About
+					    </button>
+					    <button mat-menu-item *ngIf="!authenticated()" routerLink="/signin" fxHide="false" fxHide.gt-sm>
+					      <mat-icon>login</mat-icon>
+					      Login
+					    </button>
+					    <button mat-menu-item *ngIf="authenticated()" routerLink="/signup" fxHide="false" fxHide.gt-sm>
+					      <mat-icon>logout</mat-icon>
+					      Logout
+					    </button>
+
+					    
+						</mat-menu>
+
+						<button mat-button *ngIf="!authenticated()" routerLink="/signin">
+				      <mat-icon>login</mat-icon>
+				      Login
+				    </button>
+				    <button mat-button *ngIf="authenticated()" routerLink="/signup">
+				      <mat-icon>logout</mat-icon>
+				      Logout
+				    </button>
+				    <button mat-button routerLink="/about">
+				      <mat-icon>settings</mat-icon>
+				      About
+				    </button>
+			  </div>
+			  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+			    	<mat-icon>menu</mat-icon>
+			  </button>
+			</mat-toolbar>
 
 	<div class="main-content">
 		<router-outlet></router-outlet>
 	</div>
     
-
-    <footer fxFlexOffset="auto">
-	    <div class="footer-copyright text-center py-3">
-	    	© 2021 Copyright <a href="https://github.com/mcteach21">mc.tech21</a>
-	    </div>
-    </footer>
+  <footer fxFlexOffset="auto">
+    <div class="footer-copyright text-center py-3">
+    	© 2021 Copyright <a href="https://github.com/mcteach21">mc.tech21</a>
+    </div>
+  </footer>
 
   </mat-sidenav-content>
 

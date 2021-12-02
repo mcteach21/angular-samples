@@ -1,0 +1,58 @@
+<span class="title">Rx (Component) : Reactive Programming</span>
+
+<div class="cards">
+
+	<div class="card alert alert-success">
+		<button mat-raised-button color="default" (click)="onStart()" 
+		[disabled]="started==true">Start (Subscribe)</button>
+	<button mat-raised-button color="primary" (click)="onStop()"
+		[disabled]="started!=true">Stop (unSubscribe)</button>
+
+		<ul>
+		    <li *ngFor="let item of data">{{ item }}</li>
+		</ul>
+	</div>
+	<div class="card alert alert-success">
+
+		<button mat-raised-button color="primary" (click)="onApiRequest()"
+		>Forex Api (Rates)</button>
+
+		<h4 class="mat-title">Base : {{ base }}</h4>
+		<table border="1">
+			<tr>
+				<th>Devise</th>
+				<th>Exchange value</th>
+			</tr>
+			<tr>
+				<td>ALL</td>
+				<td>{{ rates['ALL'] }}</td>
+			</tr>
+			<tr>
+				<td>USD</td>
+				<td>{{ rates['USD'] }}</td>
+			</tr>
+			<tr>
+				<td>AED</td>
+				<td>{{ rates['AED'] }}</td>
+			</tr>
+			<tr>
+				<td>AFN</td>
+				<td>{{ rates['AFN'] }}</td>
+			</tr>
+			<tr>
+				<td>AMD</td>
+				<td>{{ rates['AMD'] }}</td>
+			</tr>
+			<tr>
+				<td>ANG</td>
+				<td>{{ rates['ANG'] }}</td>
+			</tr>
+			<tr>
+				<td>AOA</td>
+				<td>{{ rates['AOA'] }}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+

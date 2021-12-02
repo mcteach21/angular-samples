@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-// import { HttpClientModule } from '@angular/common/http';
+/**
+ * Http Client
+ */
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 
 /**
- * services : ayth, log,..
+ * services : auth, log,..
+ * le service instancié (singleton) est injectable 
+ * dans composants ou autres services.
  */
 
 import { AuthService } from './service/auth.service';
 import { LogService } from './service/log.service';
+import { ApiService } from './service/api.service';
 
 /**
  * Material imports
@@ -20,6 +26,7 @@ import { LogService } from './service/log.service';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -39,6 +46,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { RxComponent } from './rx/rx.component';
 
 
 @NgModule({
@@ -46,11 +54,14 @@ import { SignupComponent } from './auth/signup/signup.component';
     AppComponent,
     AboutComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    RxComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
@@ -71,7 +82,8 @@ import { SignupComponent } from './auth/signup/signup.component';
   ],
   providers: [
       AuthService, 
-      LogService
+      LogService,
+      ApiService
   ],
   bootstrap: [AppComponent]
 })
