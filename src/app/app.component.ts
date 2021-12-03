@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 // translate module
 import {TranslateService} from '@ngx-translate/core';
@@ -15,6 +15,8 @@ export class AppComponent {
   param = {value : 'mc'};
   selectLang : string = 'en';
   TransLang = [];
+
+  langIcon = {'fr':'mms', 'en':'sms', 'kb':'more'}
 
   constructor(public translate: TranslateService){
       translate.setDefaultLang(this.selectLang);
@@ -38,5 +40,7 @@ export class AppComponent {
       console.log(this.translate.getLangs()+' ==> '+this.selectLang);
       this.translate.use(this.selectLang);
   }
-
+  getSelectedIcon(lang : string) { 
+      return this.langIcon[lang]; 
+  }
 }
